@@ -1,7 +1,6 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 import React from 'react'
 import LinearGradient from 'react-native-linear-gradient'
-import IconOne from '../Assets/WelcomeScreen/IconOne'
 import IconTwo from '../Assets/WelcomeScreen/IconTwo'
 import Heading from '../Assets/WelcomeScreen/Heading'
 import { useNavigation } from '@react-navigation/native'
@@ -18,14 +17,18 @@ const WelcomeScreenOne = () => {
                 <IconTwo />
             </View>
             <View style={styles.IconTwo} >
-                <IconOne />
+                {/* <IconOne /> */}
+                <Image source={require('../Assets/WelcomeScreen/Icon.png')} />
             </View>
-            <View style={styles.Heading} >
-                <Heading />
+            <View style={{ width: '100%', alignItems: 'center' }} >
+                <View style={styles.Heading} >
+                    <Heading />
+                </View>
+                <TouchableOpacity style={styles.NextButton} onPress={() => navigation.navigate("WelcomeTwo")} >
+                    <Text style={styles.Text}>Next</Text>
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.NextButton} onPress={() => navigation.navigate("WelcomeTwo")} >
-                <Text style={styles.Text}>Next</Text>
-            </TouchableOpacity>
+
 
         </LinearGradient>
     )
@@ -36,17 +39,16 @@ export default WelcomeScreenOne
 const styles = StyleSheet.create({
     gradient: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center'
     },
     IconOne: {
         justifyContent: 'center',
         alignItems: 'flex-end',
-        left: 60
     },
     IconTwo: {
-        alignItems: 'flex-start',
-        right: 50
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     Heading: {
         alignItems: 'center'

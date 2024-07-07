@@ -10,6 +10,8 @@ import SequenceComment from '../../Assets/SequenceSolver/SequenceComment';
 import WordTitle from '../../Assets/WordSearch/WordTitle';
 import WordImage from '../../Assets/WordSearch/WordImage';
 import WordComment from '../../Assets/WordSearch/WordComment';
+import Banner from '../Google Ads/Banner';
+import Interstitial from '../Google Ads/Interstitial';
 
 const questions = [
     { question: "What is the capital of France?", answer: "Paris", level: 1 },
@@ -113,6 +115,7 @@ const SequenceSolver = () => {
     const [timeLeft, setTimeLeft] = useState(20);
     const [score, setScore] = useState(0);
     const [level, setLevel] = useState(1);
+    const [gameOver, setGameOver] = useState(false)
 
     const navigation = useNavigation();
 
@@ -167,7 +170,8 @@ const SequenceSolver = () => {
         const userAnswer = selectedLetters.join('');
         if (userAnswer === currentQuestion.answer) {
             setScore(score + 1);
-            Alert.alert('Congratulations!', 'You got it right!');
+            //Alert.alert('Congratulations!', 'You got it right!');
+            setGameOver(true)
             setTimeout(() => {
                 nextQuestion();
             }, 1000);
@@ -212,8 +216,8 @@ const SequenceSolver = () => {
                 <Text style={styles.timer}>{`Time left: ${timeLeft} seconds`}</Text>
             </View>
             <View style={styles.Images} >
-                <WordImage style={{ top: 90 }} />
-                <WordComment />
+                <WordImage style={{ top: 130 }} />
+                <WordComment style={{ right: 70 }} />
             </View>
             <Text style={styles.question}>{currentQuestion.question}</Text>
             <View style={styles.answerContainer}>
@@ -248,6 +252,14 @@ const SequenceSolver = () => {
                     <Text style={styles.checkButtonText}>Back</Text>
                 </TouchableOpacity>
             </View>
+            {gameOver && (
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <Interstitial />
+                </View>
+            )}
+            <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>
+                <Banner />
+            </View>
         </LinearGradient>
     );
 };
@@ -279,7 +291,7 @@ const styles = StyleSheet.create({
     question: {
         fontSize: 20,
         textAlign: 'center',
-        top: 55,
+        top: 80,
         color: 'white'
     },
     timer: {
@@ -294,12 +306,12 @@ const styles = StyleSheet.create({
         width: '80%',
         backgroundColor: '#347EB6',
         borderRadius: 10,
-        top: 40
+        top: 70
     },
     selectedAnswerContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
-        top: 20,
+        top: 50,
     },
     letterButton: {
         backgroundColor: '#D9D9D9',
@@ -320,9 +332,9 @@ const styles = StyleSheet.create({
     checkButton: {
         backgroundColor: '#D9D9D9',
         padding: 10,
-        borderRadius:10,
+        borderRadius: 10,
     },
-    checkButtonText: { 
+    checkButtonText: {
         color: 'black',
         fontSize: 22,
         fontWeight: '900'
@@ -336,7 +348,7 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'space-around',
-        top: 10
+        top: 50
     }
 });
 

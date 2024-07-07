@@ -7,6 +7,8 @@ import GameTitle from '../../Assets/NumberPuzzle/GameTitle';
 import Line from '../../Assets/Line';
 import ImageDiamond from '../../Assets/NumberPuzzle/ImageDiamond';
 import CommentCloud from '../../Assets/NumberPuzzle/CommentCloud';
+import Banner from '../Google Ads/Banner';
+import Interstitial from '../Google Ads/Interstitial';
 
 let NUMBER_OF_NUMBERS = 5;
 const MAX_NUMBER = 9;
@@ -21,6 +23,7 @@ const Game = ({ route }) => {
   const [showSequence, setShowSequence] = useState(false);
   const [level, setLevel] = useState(numberLevel);
   const [score, setScore] = useState(numberScore);
+  const [gameOver, setGameOver] = useState(false);
 
   const navigation = useNavigation();
 
@@ -49,13 +52,162 @@ const Game = ({ route }) => {
       { numbers: 13, duration: 9000 },
       { numbers: 14, duration: 10000 },
       { numbers: 15, duration: 11000 },
-      { numbers: 16, duration: 12000 },
-      { numbers: 17, duration: 13000 },
-      { numbers: 18, duration: 14000 },
-      { numbers: 19, duration: 15000 },
-      { numbers: 20, duration: 16000 },
-      { numbers: 21, duration: 17000 },
-      { numbers: 22, duration: 18000 }
+      { numbers: 15, duration: 12000 },
+      { numbers: 15, duration: 13000 },
+      { numbers: 15, duration: 14000 },
+      { numbers: 15, duration: 15000 },
+      { numbers: 15, duration: 16000 },
+      { numbers: 15, duration: 17000 },
+      { numbers: 15, duration: 18000 },
+      { numbers: 15, duration: 18000 },
+      { numbers: 15, duration: 18000 },
+      { numbers: 15, duration: 18000 },
+      { numbers: 15, duration: 18000 },
+      { numbers: 15, duration: 18000 },
+      { numbers: 15, duration: 18000 },
+      { numbers: 15, duration: 18000 },
+      { numbers: 15, duration: 18000 },
+      { numbers: 15, duration: 18000 },
+      { numbers: 15, duration: 15000 },
+      { numbers: 15, duration: 15000 },
+      { numbers: 15, duration: 15000 },
+      { numbers: 15, duration: 15000 },
+      { numbers: 15, duration: 15000 },
+      { numbers: 15, duration: 15000 },
+      { numbers: 15, duration: 15000 },
+      { numbers: 15, duration: 14000 },
+      { numbers: 15, duration: 14000 },
+      { numbers: 15, duration: 14000 },
+      { numbers: 15, duration: 14000 },
+      { numbers: 15, duration: 14000 },
+      { numbers: 15, duration: 14000 },
+      { numbers: 15, duration: 14000 },
+      { numbers: 15, duration: 13000 },
+      { numbers: 15, duration: 13000 },
+      { numbers: 15, duration: 13000 },
+      { numbers: 15, duration: 13000 },
+      { numbers: 15, duration: 13000 },
+      { numbers: 15, duration: 13000 },
+      { numbers: 15, duration: 12000 },
+      { numbers: 15, duration: 12000 },
+      { numbers: 15, duration: 12000 },
+      { numbers: 15, duration: 12000 },
+      { numbers: 15, duration: 12000 },
+      { numbers: 15, duration: 12000 },
+      { numbers: 15, duration: 12000 },
+      { numbers: 15, duration: 12000 },
+      { numbers: 15, duration: 11000 },
+      { numbers: 15, duration: 11000 },
+      { numbers: 15, duration: 11000 },
+      { numbers: 15, duration: 11000 },
+      { numbers: 15, duration: 11000 },
+      { numbers: 15, duration: 11000 },
+      { numbers: 15, duration: 11000 },
+      { numbers: 15, duration: 11000 },
+      { numbers: 15, duration: 11000 },
+      { numbers: 15, duration: 11000 },
+      { numbers: 15, duration: 11000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 16, duration: 10000 },
+      { numbers: 16, duration: 10000 },
+      { numbers: 16, duration: 10000 },
+      { numbers: 16, duration: 10000 },
+      { numbers: 16, duration: 10000 },
+      { numbers: 16, duration: 10000 },
+      { numbers: 16, duration: 10000 },
+      { numbers: 16, duration: 10000 },
+      { numbers: 17, duration: 10000 },
+      { numbers: 17, duration: 10000 },
+      { numbers: 17, duration: 10000 },
+      { numbers: 17, duration: 10000 },
+      { numbers: 17, duration: 10000 },
+      { numbers: 17, duration: 10000 },
+      { numbers: 15, duration: 8000 },
+      { numbers: 15, duration: 8000 },
+      { numbers: 15, duration: 8000 },
+      { numbers: 15, duration: 8000 },
+      { numbers: 15, duration: 8000 },
+      { numbers: 15, duration: 6000 },
+      { numbers: 15, duration: 6000 },
+      { numbers: 15, duration: 6000 },
+      { numbers: 15, duration: 6000 },
+      { numbers: 15, duration: 6000 },
+      { numbers: 17, duration: 8000 },
+      { numbers: 17, duration: 8000 },
+      { numbers: 17, duration: 8000 },
+      { numbers: 17, duration: 8000 },
+      { numbers: 17, duration: 7000 },
+      { numbers: 17, duration: 7000 },
+      { numbers: 17, duration: 7000 },
+      { numbers: 17, duration: 7000 },
+      { numbers: 17, duration: 7000 },
+      { numbers: 17, duration: 7000 },
+      { numbers: 17, duration: 7000 },
+      { numbers: 17, duration: 7000 },
+      { numbers: 17, duration: 7000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 15, duration: 10000 },
+      { numbers: 13, duration: 3000 },
+      { numbers: 13, duration: 3000 },
+      { numbers: 13, duration: 3000 },
+      { numbers: 13, duration: 3000 },
+      { numbers: 13, duration: 3000 },
+      { numbers: 13, duration: 3000 },
+      { numbers: 13, duration: 3000 },
+      { numbers: 13, duration: 3000 },
+      { numbers: 13, duration: 3000 },
+      { numbers: 13, duration: 3000 },
+      { numbers: 13, duration: 3000 },
+      { numbers: 13, duration: 3000 },
+      { numbers: 13, duration: 3000 },
+      { numbers: 13, duration: 3000 },
+      { numbers: 12, duration: 4000 },
+      { numbers: 12, duration: 4000 },
+      { numbers: 12, duration: 4000 },
+      { numbers: 12, duration: 4000 },
+      { numbers: 12, duration: 4000 },
+      { numbers: 12, duration: 4000 },
+      { numbers: 12, duration: 4000 },
+      { numbers: 12, duration: 4000 },
+      { numbers: 12, duration: 4000 },
+      { numbers: 12, duration: 4000 },
+      { numbers: 12, duration: 4000 },
+      { numbers: 12, duration: 4000 },
+      { numbers: 12, duration: 4000 },
+      { numbers: 15, duration: 5000 },
+      { numbers: 15, duration: 5000 },
+      { numbers: 15, duration: 5000 },
+      { numbers: 18, duration: 5000 },
+      { numbers: 18, duration: 6000 },
+      { numbers: 18, duration: 6000 },
+      { numbers: 18, duration: 8000 },
+      { numbers: 18, duration: 5000 },
+      { numbers: 18, duration: 5000 },
+      { numbers: 18, duration: 5000 },
+      { numbers: 20, duration: 5000 },
+      { numbers: 20, duration: 5000 },
+      { numbers: 20, duration: 5000 },
+      { numbers: 20, duration: 5000 },
+      { numbers: 20, duration: 5000 },
+      { numbers: 20, duration: 5000 },
+      { numbers: 20, duration: 5000 },
+      { numbers: 20, duration: 5000 },
+
     ];
     const currentLevel = level - 1;
     if (currentLevel < levelSettings.length) {
@@ -86,7 +238,8 @@ const Game = ({ route }) => {
       setGameStatus('finished');
       setScore(score + 1);
       setLevel(level + 1);
-      Alert.alert('Congratulations!', 'You got it right!');
+      // Alert.alert('Congratulations!', 'You got it right!');
+      setGameOver(true)
       await saveProgress(score + 1, level + 1);
       setPlayerInput('');
     } else if (playerInput === '') {
@@ -96,6 +249,7 @@ const Game = ({ route }) => {
       setPlayerInput('');
     }
   };
+
 
   const resetInput = () => {
     setPlayerInput('');
@@ -165,9 +319,14 @@ const Game = ({ route }) => {
           </View>
         </View>
       )}
-      {gameStatus === 'finished' && (
-        <Text style={styles.result}>Congratulations! You remembered the sequence!</Text>
+      {gameOver && (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Interstitial />
+        </View>
       )}
+      <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>
+        <Banner />
+      </View>
     </LinearGradient>
   );
 };
@@ -195,6 +354,7 @@ const styles = StyleSheet.create({
   },
   sequence: {
     fontSize: 24,
+    top: 40,
     fontWeight: 'bold',
   },
   inputContainer: {
@@ -232,7 +392,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     color: 'black',
-    fontWeight:'900'
+    fontWeight: '900'
   },
   OptionButton: {
     flexDirection: 'row',

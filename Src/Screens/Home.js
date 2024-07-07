@@ -14,6 +14,9 @@ import GameSubTitle from '../Assets/Home/SequenceSolverGame/GameSubTitle';
 import WordSolverImage from '../Assets/Home/WordSolver/WordSolverImage';
 import WordSolverTitle from '../Assets/Home/WordSolver/WordSolveTitle';
 import WordSolverSubTitle from '../Assets/Home/WordSolver/WordSolverSubTitle';
+import Banner from '../Components/Google Ads/Banner';
+import Linee from '../Assets/Line';
+import Setting from '../Assets/Home/Setting';
 
 const Home = ({ route, navigation }) => {
     const { score = 0, level = 1, numberScore = 0, numberLevel = 1, wordScore = 0, wordLevel = 1 } = route.params || {};
@@ -74,6 +77,15 @@ const Home = ({ route, navigation }) => {
         <LinearGradient
             colors={['#94C369', '#5BBA9F', '#72C3B4', '#17A5AA']}
             style={styles.gradient}  >
+            <View style={styles.ScoreDetails} >
+                <TouchableOpacity style={styles.Score}>
+                    <Setting />
+                </TouchableOpacity>
+                <Text style={styles.Score} >
+                    Total Score: {totalScore}
+                </Text>
+            </View>
+            <Linee />
             <View style={styles.Logo}>
                 <HeadingIcon />
             </View>
@@ -147,6 +159,10 @@ const Home = ({ route, navigation }) => {
             <TouchableOpacity onPress={() => navigation.navigate('WordSearchGame', { wordScore: wordSolverScore, wordLevel: wordSolverLevel })}>
                 <Text>Word Search Score: {wordSolverScore}</Text>
             </TouchableOpacity> */}
+
+            <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>
+                <Banner />
+            </View>
         </LinearGradient>
     );
 };
@@ -156,9 +172,8 @@ export default Home;
 const styles = StyleSheet.create({
     gradient: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
-        gap: 10
+        gap: 20
     },
     Logo: {
         width: "80%",
@@ -187,11 +202,24 @@ const styles = StyleSheet.create({
     ScoreAndLevel: {
         display: 'flex',
         flexDirection: 'row',
-        gap: 20
+        gap: 20,
     },
     score: {
         color: 'white',
         fontSize: 10
+    },
+    ScoreDetails: {
+        width: "80%",
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        top: 10
+    },
+    Score: {
+        color: 'white',
+        fontSize: 15,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     SequenceSolver: {
         flexDirection: 'row',

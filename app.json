@@ -1,4 +1,7 @@
 {
   "name": "BrainBusters",
-  "displayName": "BrainBusters"
+  "displayName": "BrainBusters",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-5238758790551507~3541358714"
+  }
 }

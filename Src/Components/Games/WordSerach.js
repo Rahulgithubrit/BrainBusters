@@ -7,10 +7,12 @@ import Linee from '../../Assets/Line';
 import SequenceTitle from '../../Assets/SequenceSolver/SequenceTitle';
 import SequenceMain from '../../Assets/SequenceSolver/SequenceMain';
 import SequenceComment from '../../Assets/SequenceSolver/SequenceComment';
+import Banner from '../Google Ads/Banner';
+import Interstitial from '../Google Ads/Interstitial';
 
 const WORDS = ['ABERRATION', 'ACCELERATE', 'ACKNOWLEDGE', 'ADVENTURES', 'AMBULANCES', 'BELLIGERENT', 'BENEFACTOR', 'CIRCUMVENT', 'CONSTRUCTS', 'DECEPTIVELY', 'DISPOSABLE', 'EFFICIENTLY', 'ELIMINATES', 'FACILITATE', 'FUNDAMENTAL', 'HYPOTHESIS', 'ILLUSTRATE', 'INEVITABLE', 'JUDICIOUSLY', 'LEGITIMATE', 'METICULOUS', 'NECESSARY', 'OBSERVANCE', 'PERCEPTION', 'QUESTIONING', 'RECOGNITION', 'SATISFYING', 'TERMINATED', 'UNDERSTAND', 'VULNERABLE', 'WHIMSICALLY', 'XYLOPHONIC', 'YOUTHFULLY', 'ZOMBIFIED', 'ABUNDANTLY', 'ASTONISHED', 'BREATHTAKING', 'CHALLENGING', 'DETERMINANT', 'EMBRACEABLE', 'FABRICATING', 'GRACIOUSLY', 'HARMONIOUS', 'INTRIGUING', 'JUBILATION', 'KALEIDOSCOPE', 'LUMINESCENT', 'MANIPULATE', 'NOURISHING', 'OVERWHELMING'];
 
-const GAME_DURATION_SECONDS = 2000000;
+const GAME_DURATION_SECONDS = 10000;
 
 const WordSearchGame = ({ route }) => {
     const { wordScore = 0, wordLevel = 1 } = route.params || {};
@@ -21,6 +23,8 @@ const WordSearchGame = ({ route }) => {
     const [timeLeft, setTimeLeft] = useState(GAME_DURATION_SECONDS);
     const [score, setScore] = useState(wordScore);
     const [level, setLevel] = useState(wordLevel);
+    const [gameOver, setGameOver] = useState(false)
+
     const navigation = useNavigation();
 
     useEffect(() => {
@@ -85,10 +89,12 @@ const WordSearchGame = ({ route }) => {
             const newLevel = level + 1;
             setScore(newScore);
             setLevel(newLevel);
-            Alert.alert('Congratulations!', 'You found the word!', [{ text: 'Next Level', onPress: initializeGame }]);
+            //Alert.alert('Congratulations!', 'You found the word!', [{ text: 'Next Level', onPress: initializeGame }]);
+            initializeGame();
+            setGameOver(true)
             await saveProgress(newScore, newLevel);
         } else {
-            Alert.alert('Incorrect', 'Please try again.');
+            Alert.alert('Incorrect', 'Please try again.', [{ text: 'Restart', onPress: initializeGame }]);
         }
     };
 
@@ -119,7 +125,7 @@ const WordSearchGame = ({ route }) => {
             </View>
             <View style={styles.Images} >
                 <SequenceMain />
-                <SequenceComment style={{ top: 90 }} />
+                <SequenceComment style={{ top: 60, right: 15 }} />
             </View>
             <View style={styles.gridContainer}>
                 {wordInGrid.map((letter, index) => (
@@ -137,9 +143,20 @@ const WordSearchGame = ({ route }) => {
                 <TouchableOpacity style={styles.submitButton} onPress={submitWord} disabled={timeLeft === 0}>
                     <Text style={styles.submitButtonText}>Submit</Text>
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.submitButton} onPress={initializeGame} disabled={timeLeft === 0}>
+                    <Text style={styles.submitButtonText}>Restart</Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.submitButton} onPress={() => navigation.navigate('Home', { wordScore, wordLevel })} >
                     <Text style={styles.submitButtonText}>Back</Text>
                 </TouchableOpacity>
+            </View>
+            {gameOver && (
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <Interstitial />
+                </View>
+            )}
+            <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>
+                <Banner />
             </View>
         </LinearGradient>
     );
@@ -156,7 +173,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        top:10
+        top: 10
     },
     Score: {
         color: 'white',
@@ -190,7 +207,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#17746D',
         borderRadius: 10,
         padding: 10,
-        top:15
+        top: 15
     },
     letterButton: {
         width: 40,
@@ -221,7 +238,7 @@ const styles = StyleSheet.create({
     submitButtonText: {
         color: 'black',
         fontSize: 16,
-        fontWeight:'900'
+        fontWeight: '900'
     },
     Buttons: {
         flexDirection: 'row',
